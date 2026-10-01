@@ -1,0 +1,563 @@
+/* ============================================
+   GUARDIANA DE LAS PLANTAS
+   Estilos accesibles para Ana María
+   ============================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --green:#2e7d32;
+  --light:#e8f5e9;
+  --gold:#ffb300;
+  --sky:#b3e5fc;
+  --ink:#1b3a22;
+}
+
+html,body{min-height:100%}
+
+body{
+  font-family:'Segoe UI',Tahoma,Arial,sans-serif;
+  background:linear-gradient(180deg,#cdeffd 0%,var(--light) 60%,#b9e7a8 100%);
+  color:var(--ink);
+  text-transform:uppercase;
+  font-weight:700;
+  letter-spacing:.4px;
+  /* ESCALA RESPONSIVE: antes era 21px fijos, asi que en una ventana
+     angosta (p.ej. al dividir la pantalla en dos: ~620px) el contenido no
+     entraba y aparecia la barra de scroll, y en una pantalla grande la
+     seccion se quedaba chica sin usar el espacio libre.
+     Ahora crece con el ancho hasta 26px y se encoja sola en ventanas
+     chicas. Todo lo demas esta en em, asi que escala con esto. */
+  font-size:clamp(19px,1.42vw,26px);
+  height:100%;
+  overflow-x:hidden;
+}
+
+img{max-width:100%;display:block}
+
+/* ====== PANTALLAS ====== */
+.screen{display:none;width:100%;max-width:min(1180px,96vw);margin:0 auto}
+.screen.on{display:flex;align-items:safe center;justify-content:center;animation:fadeIn .5s;min-height:100vh;padding:14px}
+@keyframes appear{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+/* la pantalla entra solo con opacidad: un translateY sobre un bloque de 100vh
+   crearía una barra de scroll durante la animación */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.card{
+  background:#fff;border-radius:22px;padding:20px 24px;
+  box-shadow:0 12px 40px rgba(0,0,0,.15);
+  width:100%;
+}
+.card.center{text-align:center}
+
+h1.big{font-size:1.85em;margin:2px 0 4px;line-height:1.15}
+h1.small{font-size:1.35em;margin:0 0 10px;line-height:1.2}
+.sub{color:#3f6b3d;font-size:1.05em;margin-bottom:10px}
+
+/* ====== CONSIGNA: TEXTO QUE SE ESCUCHA (transcripción fija) ====== */
+.consigna{
+  display:flex;align-items:center;gap:12px;width:100%;max-width:740px;
+  background:#fff7d6;border:4px solid var(--gold);border-radius:22px;
+  padding:11px 18px;margin:8px auto 11px;
+  font-size:1.1em;line-height:1.32;text-align:left;color:var(--ink);
+  min-height:66px;cursor:pointer;transition:transform .15s,box-shadow .15s;
+}
+.consigna:hover,.consigna:active{transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,0,0,.14)}
+.consigna .ico{font-size:1.5em;line-height:1;flex:0 0 auto}
+.consigna .txt{flex:1 1 auto}
+.consigna .w.on{background:#ffd54f;border-radius:6px;box-shadow:0 0 0 3px rgba(255,213,79,.5)}
+/* Consignas largas: se aprieta un poco el interlineado para que la pantalla
+   siga entrando COMPLETA, sin barra de scroll. La letra sigue siendo grande. */
+.consigna.largo{line-height:1.2;padding:8px 14px;min-height:56px;margin:6px auto 10px}
+.consigna.largo .ico{font-size:1.3em}
+.consigna.muy-largo{font-size:1.05em;line-height:1.16;padding:7px 12px;min-height:48px;margin:5px auto 8px}
+.consigna.muy-largo .ico{font-size:1.2em}
+
+/* ====== MARCADOR DE ESTRELLAS ====== */
+.hud{
+  position:fixed;top:10px;right:14px;z-index:90;
+  background:rgba(255,255,255,.92);border:3px solid var(--gold);
+  border-radius:16px;padding:5px 14px;font-size:1.05em;
+  box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+.hud .star{display:flex;align-items:center;gap:6px;min-width:44px;justify-content:center}
+.hud.pop .star{animation:pop .4s}
+
+.mascota{width:140px;margin:0 auto 2px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.15))}
+.mascota img{border-radius:16px}
+
+/* ====== FOCO ACCESIBLE ====== */
+.btn:focus-visible,.listen-btn:focus-visible,.action-btn:focus-visible,
+.opt:focus-visible,.gl-item:focus-visible,.order-opt:focus-visible,
+.order-slot:focus-visible,.consigna:focus-visible,.check-item:focus-visible,.def-play:focus-visible{
+  outline:5px solid #0b57d0;outline-offset:4px;
+}
+
+/* ====== BOTONES ====== */
+.btn{
+  background:linear-gradient(180deg,#43a047,#2e7d32);
+  color:#fff;border:none;border-radius:60px;
+  font-family:inherit;font-weight:700;text-transform:uppercase;
+  letter-spacing:.4px;font-size:1.15em;padding:16px 30px;cursor:pointer;
+  box-shadow:0 8px 0 #1b5e20,0 10px 20px rgba(0,0,0,.18);
+  transition:transform .1s,box-shadow .1s;
+  margin:8px;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(6px);box-shadow:0 2px 0 #1b5e20,0 6px 12px rgba(0,0,0,.15)}
+.btn.small{font-size:1em;padding:12px 22px}
+.btn.big{font-size:1.35em;padding:16px 34px}
+.btn.speaking{opacity:.6;pointer-events:none}
+
+/* ====== BOTÓN PARLANTE ======
+   Misma tipografía que los botones de acción (hereda la del body) para que
+   la fila se lea como un par, no como dos controles distintos. */
+.listen-btn{
+  background:#fffdf5;border:5px solid var(--gold);color:#7a4a00;
+  /* píldora como el botón de acción con el que forma la fila */
+  border-radius:60px;
+  min-width:200px;height:58px;padding:0 26px;font-size:1.2em;cursor:pointer;
+  font-family:inherit;font-weight:700;text-transform:uppercase;letter-spacing:.4px;
+  box-shadow:0 6px 0 #d99a00,0 8px 16px rgba(0,0,0,.16);
+  transition:transform .1s,box-shadow .1s;margin:4px auto 8px;display:block;
+}
+.listen-btn:hover{transform:translateY(-2px)}
+.listen-btn:active{transform:translateY(5px);box-shadow:0 1px 0 #d99a00}
+
+@media(max-width:620px){
+  .listen-btn{min-width:180px;height:56px;font-size:1.05em}
+}
+
+/* ====== CUADRICULAS DE ELECCIÓN ====== */
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:9px;margin-bottom:10px;max-width:720px;margin-left:auto;margin-right:auto}
+.choice-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:14px;max-width:620px;margin-left:auto;margin-right:auto}
+.choice-grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:14px;max-width:720px;margin-left:auto;margin-right:auto}
+
+.opt{
+  background:#f6fff3;border:4px solid #cbe7c0;border-radius:22px;
+  padding:8px;width:100%;cursor:pointer;text-align:center;
+  transition:all .2s;
+}
+.opt img{border-radius:16px;margin:0 auto 4px;height:92px;width:auto;max-width:100%;object-fit:contain}
+.opt span{font-size:1.05em;display:block}
+.opt.big{font-size:1.15em;padding:14px 10px}
+.opt:hover{transform:translateY(-4px);border-color:var(--green)}
+.opt.correct{border-color:var(--green);background:#e8f5e9;animation:pop .4s}
+.opt.correct::after{content:' ✅';display:block;font-size:1.2em}
+.opt.incorrect{border-color:#d32f2f;background:#ffebee;animation:shake .4s}
+.opt.incorrect::after{content:' ❌';display:block;font-size:1.2em}
+.opt.fixed{opacity:1;pointer-events:none;background:#eef3ec;border-style:solid}
+.opt.done{opacity:1;pointer-events:none;background:#eef3ec;border-style:solid}
+
+@keyframes pop{50%{transform:scale(1.12)}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+
+/* ====== LÍNEA DE CRECIMIENTO (INTERACTIVA) ====== */
+/* ====== LAS CINCO ETAPAS EN UNA SOLA FILA =====
+   Esto es un PROCESO: Semilla -> Germinacion -> Brote -> Planta pequena ->
+   Planta adulta. Si las tarjetas se reparten en dos filas, con las flechas
+   colgando entre fila y fila, se pierde la idea de secuencia y hay que leer
+   despacio. Por eso:
+     · flex-wrap:nowrap  -> nunca se parte en dos filas
+     · las 5 tarjetas miden EXACTO lo mismo (flex:1 1 0) -> quedan alineadas
+     · la fuente de la etiqueta es un clamp calibrado para que la palabra mas
+       larga ("Germinación", ~7.7em) entre entera en su tarjeta, sin partirse
+       y sin salirse, en cualquier ancho de ventana. */
+.growth-line{
+  display:flex;flex-wrap:nowrap;gap:6px;justify-content:center;align-items:stretch;
+  margin:10px auto;width:100%;max-width:1040px;
+}
+.gl-item{
+  background:#fff;border:3px solid #cbe7c0;border-radius:18px;
+  padding:5px;width:auto;cursor:pointer;text-align:center;transition:all .2s;
+  flex:1 1 0;min-width:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+}
+.gl-item img{border-radius:12px;margin:0 auto 2px;height:86px;width:auto;max-width:100%;object-fit:contain}
+.gl-item:hover{transform:translateY(-4px);border-color:var(--green)}
+/* la palabra nunca se parte y nunca se sale */
+.gl-cap{
+  font-size:clamp(13px,1.7vw,20px);line-height:1.15;
+  white-space:nowrap;overflow-wrap:normal;word-break:keep-all;hyphens:none;
+}
+.gl-arrow{
+  font-size:clamp(15px,1.6vw,22px);color:var(--green);font-weight:900;
+  flex:0 0 auto;align-self:center;
+}
+
+/* ====== ORDENAR ETAPAS ====== */
+.order-slots{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:8px 0;max-width:1040px;margin-left:auto;margin-right:auto}
+.order-slot{
+  min-height:118px;border:4px dashed #c3d9bb;border-radius:22px;
+  background:#f4faf1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;transition:.3s;position:relative;padding:6px;
+}
+.order-slot .ph{color:#3f6b3d;font-size:1em;position:absolute;top:6px}
+.order-slot.filled{border-color:var(--green);border-style:solid;background:#fff}
+.order-slot.filled .ph{position:static;color:var(--ink);font-size:1em}
+.order-slot.filled img{border-radius:16px;max-width:90%;max-height:76px}
+.order-slot.wrong{border-color:#d32f2f;background:#ffebee;animation:shake .4s}
+.order-option{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0;max-width:1040px;margin-left:auto;margin-right:auto}
+.order-opt{
+  background:#fff;border:4px solid #cbe7c0;border-radius:22px;
+  padding:6px;cursor:pointer;text-align:center;transition:.2s;box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+.order-opt img{border-radius:16px;margin:0 auto;height:104px;width:auto;max-width:100%;object-fit:contain}
+.order-opt .order-cap{display:block;font-size:.9em;margin-top:4px;color:var(--ink);overflow-wrap:normal;word-break:keep-all;hyphens:none}
+.order-opt:hover{transform:translateY(-4px);border-color:var(--green)}
+.order-opt.sel{border-color:var(--green);background:var(--light)}
+.order-opt.done{opacity:1;pointer-events:none;background:#eef3ec;border-style:solid}
+/* la casilla que toca: se ve cuál es sin tener que acordarse */
+.order-slot.next{
+  border-color:var(--gold);border-style:solid;background:#fff7d6;
+  box-shadow:0 0 0 5px rgba(255,179,0,.35);
+}
+.order-slot.next .ph{color:#8f6a00;position:static;font-size:1.05em}
+
+.fb{margin-top:12px;min-height:30px}
+.fbmsg{
+  display:inline-block;background:var(--light);border:3px solid var(--green);
+  color:var(--green);border-radius:18px;padding:10px 18px;font-size:1.1em;
+}
+.fbmsg.warm{background:#fff7d6;border-color:var(--gold);color:#8f6a00}
+/* Grillas densas: imágenes un poco más bajas para que la pantalla
+   entre completa sin barra de scroll, sin achicar los botones. */
+#pickGrid{gap:7px;margin-bottom:7px}
+#pickGrid .opt{padding:8px 6px}
+#pickGrid .opt img{height:76px}
+#orderOption .order-opt{padding:6px}
+#orderOption .order-opt img{height:74px}
+#transferList{gap:7px}
+
+/* Checklist: los 3 mensajes se apilan en una sola caja compacta
+   para que la pantalla siga entrando sin scroll */
+#transferFb{display:flex;flex-direction:column;gap:5px;margin-top:8px;align-items:center}
+#transferFb .fbmsg{
+  display:block;width:100%;box-sizing:border-box;
+  padding:5px 12px;font-size:1em;line-height:1.22;border-width:2px;border-radius:14px;
+}
+
+/* ====== ESCENA DE MACETA ====== */
+.pot-scene{position:relative;width:100%;max-width:430px;margin:6px auto;text-align:center}
+.pot-stage{
+  min-height:158px;display:flex;align-items:flex-end;justify-content:center;
+}
+.pot-stage img{
+  max-height:150px;width:auto;border-radius:16px;
+  filter:drop-shadow(0 8px 14px rgba(0,0,0,.18));
+}
+.pot-dirt{
+  position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+  width:220px;height:50px;background:linear-gradient(180deg,#8d6e63,#5d4037);
+  border-radius:0 0 60px 60px;transition:background .5s;opacity:.9;
+}
+.pot-dirt.wet{background:linear-gradient(180deg,#6d4c41,#3e2723)}
+
+/* animaciones */
+.pot-anim{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s}
+.pot-anim.on{opacity:1}
+.water-drops{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:200px;height:180px}
+.water-drops span{
+  position:absolute;top:-20px;width:16px;height:26px;border-radius:50%;
+  background:linear-gradient(180deg,#4fc3f7,#0288d1);
+}
+.water-drops span:nth-child(1){left:10px;animation:fall .9s .00s ease-in infinite}
+.water-drops span:nth-child(2){left:45px;animation:fall .9s .15s ease-in infinite}
+.water-drops span:nth-child(3){left:80px;animation:fall .9s .30s ease-in infinite}
+.water-drops span:nth-child(4){left:112px;animation:fall .9s .12s ease-in infinite}
+.water-drops span:nth-child(5){left:145px;animation:fall 1.0s .25s ease-in infinite}
+.water-drops span:nth-child(6){left:180px;animation:fall .8s .05s ease-in infinite}
+@keyframes fall{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  20%{opacity:.9}
+  100%{transform:translateY(190px) scale(.6);opacity:0}
+}
+.sun-rays{position:absolute;top:4px;right:10px;font-size:2.4em;animation:spin 6s linear infinite}
+.sun-rays::before{content:'☀️'}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:8px}
+.action-btn{
+  background:linear-gradient(180deg,#43a047,#2e7d32);color:#fff;border:none;
+  border-radius:16px;font-family:inherit;font-weight:700;text-transform:uppercase;
+  font-size:1.1em;padding:12px 18px;cursor:pointer;min-width:136px;min-height:60px;
+  box-shadow:0 6px 0 #1b5e20,0 8px 16px rgba(0,0,0,.15);transition:transform .1s,box-shadow .1s;
+}
+.action-btn .ico{display:block;font-size:1.7em;line-height:1.15}
+.action-btn:hover{transform:translateY(-2px)}
+.action-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #1b5e20}
+.action-btn.used{opacity:1;pointer-events:none;background:#cfd8c6;color:#3a3a3a;box-shadow:0 6px 0 #8d9a85}
+.action-btn.warm{background:linear-gradient(180deg,#ffb300,#f57f17);color:#3b2500;box-shadow:0 6px 0 #a46500,0 8px 16px rgba(0,0,0,.15)}
+.action-btn.soil{background:linear-gradient(180deg,#8d6e63,#5d4037);color:#fff;box-shadow:0 6px 0 #3e2723,0 8px 16px rgba(0,0,0,.15)}
+
+/* ====== INDICADOR DE NECESIDADES ====== */
+.needs-bar{display:flex;gap:10px;justify-content:center;margin:8px 0;flex-wrap:wrap}
+.need-item{
+  background:#fff;border:3px solid #d6e8d6;border-radius:14px;padding:6px 14px;
+  font-weight:700;font-size:1.05em;transition:all .4s;
+}
+.need-item.done{background:var(--light);border-color:var(--green);color:var(--green)}
+.need-item.done::after{content:' ✅ LISTO';margin-left:4px}
+
+/* ====== ESCENA PLANTA (nivel 3) ====== */
+.scene-plant{width:178px;margin:0 auto 6px;min-height:132px}
+.scene-plant img{border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.15);width:100%}
+
+/* ====== REPASO ====== */
+/* ====== REPASO FINAL: CUESTIONARIO ====== */
+.quiz-dots{display:flex;gap:10px;justify-content:center;margin:10px 0 6px}
+.quiz-dots .dot{
+  width:26px;height:26px;border-radius:50%;
+  background:#eef3ec;border:3px solid #cbe7c0;
+}
+.quiz-dots .dot.ok{background:var(--green);border-color:var(--green)}
+.quiz-q{font-size:1.15em;margin:4px 0 10px;line-height:1.25}
+.quiz-q::first-letter{font-size:1.1em}
+.opt.locked{pointer-events:none}
+.opt.locked:not(.correct){opacity:.45}
+/* opción que se está leyendo al pasar el mouse */
+.leyendo{outline:5px solid var(--gold);outline-offset:3px;box-shadow:0 0 0 9px rgba(255,213,79,.4)}
+/* si además tiene el foco de teclado, gana el azul: la regla de
+   :focus-visible de arriba tiene mayor especificidad y lo tapaba */
+.leyendo:focus-visible{outline-color:#0b57d0}
+
+/* ====== TRANSFERENCIA A LA VIDA REAL ====== */
+.check-list{display:flex;flex-direction:column;gap:8px;max-width:520px;margin:0 auto 4px}
+.check-item{
+    display:flex;align-items:center;gap:12px;text-align:left;
+    background:#fff;border:4px solid #cbe7c0;border-radius:22px;
+    padding:8px 14px;cursor:pointer;font-size:1.1em;transition:all .2s;
+    }
+.check-item .box{font-size:1.25em;line-height:1;flex:0 0 auto}
+.check-item .txt{flex:1 1 auto}
+.check-item:hover{border-color:var(--green);transform:translateY(-2px)}
+.check-item.done{background:#e8f5e9;border-color:var(--green);opacity:1}
+.check-item.done .txt{text-decoration:underline;text-decoration-thickness:2px}
+
+.confetti{font-size:1.5em;letter-spacing:6px;margin:6px 0}
+
+/* ====== CÁPSULA DE TEORÍA ====== */
+.def-overlay{
+display:none;position:fixed;inset:0;background:rgba(20,50,25,.55);
+z-index:100;align-items:center;justify-content:center;padding:10px;
+/* red de seguridad: si aun así no entra, se scrollea. NUNCA se cortan
+   los botones: un botón invisible es peor que una barra de scroll. */
+overflow:auto;
+}
+.def-overlay.on{display:flex}
+.def-box{
+  /* la caja crecia con la pantalla; antes moria en 480px fijos y en un
+     monitor grande sobraba espacio a los lados sin usarse */
+  background:#fff;border-radius:22px;padding:16px;max-width:min(760px,94vw);width:100%;
+text-align:center;box-shadow:0 16px 50px rgba(0,0,0,.35);animation:appear .4s;
+max-height:calc(100vh - 20px);overflow:auto;
+}
+.def-img{width:150px;margin:0 auto 4px}
+.def-img img{border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.15);width:100%}
+.def-box h2{font-size:1.15em;margin:0 0 6px;line-height:1.2}
+.def-text{
+  font-size:1.05em;color:#2f5136;margin:0 0 8px;
+  max-width:none;min-height:0;border-width:3px;padding:8px 12px;
+}
+/* ====== TAMAÑO ÚNICO DE LOS BOTONES DE ACCIÓN =====
+   ESCUCHAR, VAMOS A JUGAR, COMENZAR, TERMINAR y JUGAR OTRA VEZ miden
+   EXACTAMENTE lo mismo en todas las pantallas: mismo ancho, mismo alto,
+   misma tipografía. Antes cada uno traía su propio font-size y padding, y
+   quedaban distintos entre sí y entre pantallas. */
+.btn.big,.listen-btn,.def-play{
+  width:370px;height:90px;padding:0 18px;margin:8px auto;
+  font-family:inherit;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  font-size:1.2em;line-height:1.1;white-space:nowrap;
+  display:inline-flex;align-items:center;justify-content:center;text-align:center;
+  border-radius:60px;cursor:pointer;
+}
+
+/* ====== FILA DE LOS DOS BOTONES: siempre juntos, siempre del mismo alto ====== */
+.def-btns{
+  display:flex;flex-wrap:nowrap;gap:18px;justify-content:center;align-items:stretch;
+  margin:8px auto 0;width:100%;
+}
+.def-play{
+  background:linear-gradient(180deg,#43a047,#2e7d32);color:#fff;border:none;
+  box-shadow:0 8px 0 #1b5e20,0 10px 20px rgba(0,0,0,.18);
+}
+.def-play:active{transform:translateY(5px);box-shadow:0 3px 0 #1b5e20}
+.def-play.speaking{opacity:.6;pointer-events:none}
+
+/* ====== PANTALLAS BAJAS (notebooks 1280x720 y similares) =====
+   El diseño holgado de arriba no entra en 569px de alto. Acá se recorta solo
+   el aire VERTICAL y se mantienen el ancho, la tipografía de los botones y
+   todo el contenido: la pantalla sigue entrando completa, sin scroll. */
+@media(max-height:660px){
+  .screen.on{padding:8px}
+  .card{padding:12px 20px}
+  h1.big{font-size:1.6em;margin:0 0 2px}
+  h1.small{font-size:1.2em;margin:0 0 6px}
+  .sub{font-size:1em;margin-bottom:6px}
+  .consigna{padding:8px 14px;min-height:56px;margin:5px auto 8px;max-width:700px}
+  .consigna.largo{padding:7px 12px;min-height:50px;margin:5px auto 8px}
+  .consigna.muy-largo{padding:6px 11px;min-height:44px;margin:4px auto 7px}
+  .mascota{width:120px}
+  .def-btns{margin:4px auto 0;gap:12px}
+  /* los tres se achican JUNTOS: siguen siendo iguales entre sí */
+  .btn.big,.listen-btn,.def-play{width:320px;height:70px;font-size:1.1em;padding:0 10px}
+  .listen-btn{min-width:0}
+  .btn.big{font-size:1.1em}
+}
+
+/* ====== MOVIMIENTOS REDUCIDOS ====== */
+@media (prefers-reduced-motion:reduce){
+  .water-drops span,.sun-rays{animation:none}
+  *{animation-duration:.001s !important;transition-duration:.001s !important}
+}
+
+/* ====== RESPONSIVE =====
+   El corte angosto estaba en 620px pero el juego ya desbordaba a los ~624px
+   (justo el ancho que deja dividir la pantalla en dos mitades): la ventana
+   caia en un hueco sin reglas y aparecia la barra de scroll. Por eso ahora
+   hay un rango intermedio y el angosto sube a 780px. */
+
+/* rango intermedio: la ventana es angosta pero la pantalla es alta */
+@media(max-width:1060px){
+  body{font-size:clamp(17px,2.05vw,21px)}
+  .choice-grid-3{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .choice-grid-2{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .order-slots{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+  .order-option{grid-template-columns:repeat(5,1fr)}
+  .def-img{width:150px}
+  .def-box{padding:14px}
+}
+
+@media(max-width:780px){
+  /* el padding va en .screen.on, NO en body: si el body tiene padding y la
+     pantalla mide 100vh, los dos se suman y aparece la barra de scroll en
+     todas las pantallas (eran +16px exactos en las 20). */
+  body{padding:0}
+  body{font-size:clamp(15px,2.6vw,18px)}
+  h1.big{font-size:1.5em}
+  h1.small{font-size:1.1em}
+  .screen.on{min-height:100vh;padding:8px 6px}
+  .card{padding:14px 12px;border-radius:22px}
+  .consigna{font-size:1.05em;min-height:66px;padding:10px 14px;gap:9px;margin:8px auto 12px}
+  .hud{top:6px;right:8px;padding:3px 10px;font-size:.95em;border-width:2px}
+  .choice-grid{grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px}
+  .opt img{height:86px}
+  .choice-grid-2{grid-template-columns:1fr;max-width:280px}
+  .choice-grid-3{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));max-width:500px}
+  .order-slots{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px}
+  .order-slot{min-height:112px}
+  .order-slot.filled img{max-height:66px}
+  .order-opt img{height:84px}
+  .order-option{grid-template-columns:repeat(5,1fr);gap:8px}
+  .growth-line{gap:4px}
+  .gl-item{padding:3px;border-width:2px;border-radius:14px}
+  .gl-item img{height:70px}
+  .gl-cap{font-size:clamp(11px,1.7vw,17px)}
+  .check-item{font-size:1.05em;padding:9px 12px;border-width:3px}
+  .quiz-q{font-size:1.1em}
+  .quiz-dots .dot{width:22px;height:22px}
+  .pot-scene{max-width:300px}
+  .pot-dirt{width:170px;height:44px}
+  .pot-stage{min-height:124px}
+  .pot-stage img{max-height:118px}
+  .scene-plant{width:140px;min-height:104px}
+  .def-img{width:170px}
+  .mascota{width:110px}
+  .btn{font-size:1em;padding:12px 20px}
+  .btn.big{font-size:1.1em;padding:14px 24px}
+  .action-btn{min-width:110px;min-height:58px;font-size:1em;padding:10px 12px}
+}
+
+/* ====== VENTANA MUY BAJA O MUY ANGOSTA =====
+   Va al FINAL a proposito: en CSS gana la ultima regla que coincide, y si
+   estuviera antes la ganarian los cortes por ancho, que era como antes
+   seguia apareciendo la barra de scroll en ventanas chicas. */
+@media(max-height:560px),(max-width:660px){
+  body{font-size:clamp(12px,min(2.4vw,2.6vh),16px)}
+  .screen.on{padding:5px;min-height:100vh}
+  .card{padding:9px 12px}
+  h1.big{font-size:1.2em;margin:0 0 1px}
+  h1.small{font-size:.98em;margin:0 0 2px}
+  .sub{font-size:.88em;margin-bottom:2px}
+  .consigna{padding:4px 7px;min-height:44px;margin:2px auto 3px;gap:5px;font-size:1em}
+  .consigna.largo,.consigna.muy-largo{min-height:44px;padding:4px 7px;margin:2px auto 3px}
+  .def-btns{margin:4px auto 0;gap:10px;flex-wrap:wrap}
+  /* los botones ya no caben en fila: pasan a apilarse en columna */
+  .def-btns{flex-direction:column;align-items:center}
+  .btn.big,.listen-btn,.def-play{width:min(300px,86vw);height:56px;font-size:1.05em}
+  .listen-btn{min-width:0}
+  .mascota{width:88px}
+  .def-img{width:104px}
+  .def-box{padding:10px;max-height:calc(100vh - 10px)}
+  .def-box h2{font-size:1.05em;margin:0 0 4px}
+  .pot-scene{max-width:250px}
+  .pot-stage{min-height:88px}
+  .pot-stage img{max-height:84px}
+  .pot-dirt{width:140px;height:36px}
+  .scene-plant{width:104px;min-height:78px}
+  .opt img{height:62px}
+  /* #pickGrid usa selectores con ID, mas especificos que ".opt img": sin
+     nombrarlos aqui las imagenes se quedaban en 76px y la pantalla de
+     elegir plantas se salia de alto. */
+  #pickGrid .opt{padding:4px 5px}
+  #pickGrid .opt img{height:46px;margin-bottom:2px}
+  #pickGrid .opt span{font-size:1em}
+  .choice-grid{gap:6px;margin-bottom:6px}
+  .choice-grid-2{gap:8px;margin-bottom:8px}
+  /* scr1-acciones: las TRES acciones en una columna, cada una mas baja */
+  #accionesGrid .opt{padding:5px 6px}
+  #accionesGrid .opt img{height:48px;margin-bottom:2px}
+  /* scr2-order: las cinco casillas y las cinco imagenes, mas bajas */
+  .order-opt img{height:46px}
+  .order-slot{min-height:66px}
+  .order-slots{margin:2px 0}
+  .order-option{margin:2px 0}
+  .order-slot .ph{line-height:1.05}
+  .gl-item img{height:58px}
+  .gl-item{padding:3px}
+  .gl-cap{font-size:clamp(10px,1.7vw,15px)}
+  .order-opt img{height:58px}
+  .order-slot{min-height:76px}
+  .order-slot.filled img{max-height:46px}
+  .check-item{font-size:1em;padding:6px 10px;border-width:3px;gap:9px}
+  .quiz-q{font-size:1.05em;margin:3px 0 7px}
+  .quiz-dots{gap:7px;margin:7px 0 4px}
+  .quiz-dots .dot{width:19px;height:19px;border-width:2px}
+  .confetti{font-size:1.2em;letter-spacing:4px;margin:3px 0}
+  .action-btn{min-width:96px;min-height:50px;font-size:.95em;padding:8px 10px}
+  .actions{gap:9px}
+  .fb{margin-top:3px}
+  .fbmsg{font-size:1em;padding:8px 13px}
+}
+
+/* ultimo nivel: ventanas de menos de 400px de alto. sin scroll, pero la
+   tipografia ya esta en su limite de legibilidad, asi que no baja mas. */
+@media(max-height:400px){
+  body{font-size:12px}
+  .screen.on{padding:3px}
+  .card{padding:7px 10px}
+  .mascota{width:66px}
+  .mascota img{max-height:66px}
+  h1.big{font-size:1.25em;margin:0}
+  h1.small{font-size:1em;margin:0 0 3px}
+  .sub{font-size:.9em;margin-bottom:2px}
+  .consigna{padding:5px 9px;margin:3px auto 4px}
+  .def-btns{margin:3px auto 0;gap:7px}
+  .btn.big,.listen-btn,.def-play{height:46px;font-size:1em}
+  .def-img{width:74px}
+  .pot-stage{min-height:66px}
+  .pot-stage img{max-height:64px}
+  .pot-dirt{width:112px;height:28px}
+  .scene-plant{width:76px;min-height:58px}
+  .opt img{height:34px}
+  .opt{padding:3px}
+  .gl-item img{height:36px}
+  .order-opt img{height:36px}
+  .order-slot{min-height:50px}
+  .order-slot.filled img{max-height:30px}
+  .consigna{min-height:44px}
+  .growth-line{font-size:.95em}
+  .check-list{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  .check-item{font-size:.92em;padding:4px 6px}
+  .action-btn{min-height:42px;padding:6px 8px}
+  .check-item{padding:5px 8px}
+}

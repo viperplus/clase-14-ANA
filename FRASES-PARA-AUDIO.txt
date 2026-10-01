@@ -1,0 +1,132 @@
+# GUARDIANA DE LAS PLANTAS - FRASES PARA GENERAR AUDIO ARGENTINO
+# formato:  NUMERO | CLAVE | TIPO | TEXTO
+# generar un MP3 por linea, nombrado con la clave.
+
+  1 | screen-start | intro | ¡Hola, Ana María! Bienvenida al juego Guardiana de las Plantas. Tocá Comenzar para jugar.
+  2 | scr1-intro | intro | Conozcamos a las plantas. Tocá Vamos a jugar para empezar.
+  3 | scr2-intro | intro | ¿Cómo crece una planta? Tocá Vamos a jugar para empezar.
+  4 | scr3-intro | intro | ¡Ahora vamos a cuidar nuestra planta! Tocá Vamos a jugar.
+  5 | scrFinal-intro | intro | ¡Ayudá a tu planta a crecer! Tocá Vamos a jugar.
+  6 | screen-finish | intro | ¡Lo lograste, Ana María! 🌸 Cuidá tu planta con AGUA, SOL y TIERRA limpia, y va a crecer fuerte.
+  7 | scr1-pick | consigna | Tocá las TRES plantas. Son las que están en la tierra y tienen hojas.
+  8 | scr1-acciones | consigna | ¿Qué puede hacer una planta? Tocá UNA sola respuesta.
+  9 | scr2-theory | consigna | Estas son las CINCO etapas. Tocá cada imagen para escuchar su nombre.
+ 10 | scr2-order | consigna | ¿Cuál va después? Tocá una imagen y después la casilla donde va.
+ 11 | scr2-grow | consigna | La semilla necesita AGUA y LUZ. Tocá los dos botones, uno por vez.
+ 12 | scr3-sed | consigna | Mirá la planta. Está triste. ¿QUÉ LE FALTA? Tocá una respuesta.
+ 13 | scr3-falta | consigna | ¡Le falta AGUA! Tocá el botón de AGUA para ayudarla.
+ 14 | scr3-luz | consigna | Esta planta está en la oscuridad. ¿QUÉ LE FALTA? Tocá una respuesta.
+ 15 | scr3-faltaluz | consigna | ¡No tiene LUZ! Tocá el botón del SOL para ayudarla.
+ 16 | scr3-tierra | consigna | Esta planta no tiene tierra buena. ¿QUÉ LE FALTA? Tocá una respuesta.
+ 17 | scr3-basura | consigna | La basura tapa la tierra. Tocá la escoba y mirá qué pasa.
+ 18 | scrFinal-play | consigna | Tocá AGUA, después LUZ, después TIERRA. Después mirá cómo crece.
+ 19 | scrFinish-review | consigna | Contestá las cuatro preguntas. Si te equivocás, lo intentás otra vez.
+ 20 | scrTransfer | consigna | Tocá las TRES cosas que tenés que hacer para cuidar una planta en tu casa.
+ 21 | scr1-pick_2 | capsula-titulo | 🌿 ¿Qué es una planta?
+ 22 | scr1-pick_3 | capsula-texto | Las plantas son seres vivos. Nacen, crecen y se reproducen.
+ 23 | scr1-acciones_2 | capsula-titulo | 🌱 ¿Qué puede hacer una planta?
+ 24 | scr1-acciones_3 | capsula-texto | Una planta puede crecer, tener hojas y flores. Nace, crece y se reproduce.
+ 25 | scr2-theory_2 | capsula-titulo | 🌰 Las etapas de crecimiento de una planta
+ 26 | scr2-theory_3 | capsula-texto | Una planta comienza su vida como una semilla. Con agua, la semilla comienza a germinar.
+ 27 | scr2-order_2 | capsula-titulo | 🗂️ Ordená las etapas
+ 28 | scr2-order_3 | capsula-texto | Primero aparece la raíz. Después crece el tallo y aparecen las hojas. La planta crece en etapas.
+ 29 | scr3-sed_2 | capsula-titulo | 💧 ¿Qué necesita?
+ 30 | scr3-sed_3 | capsula-texto | Las plantas necesitan agua para vivir y crecer.
+ 31 | scr3-luz_2 | capsula-titulo | ☀️ ¿Qué necesita?
+ 32 | scr3-luz_3 | capsula-texto | La luz ayuda a las plantas a fabricar su alimento. Las plantas necesitan luz para crecer.
+ 33 | scr3-tierra_2 | capsula-titulo | 🌱 ¿Qué necesita?
+ 34 | scr3-tierra_3 | capsula-texto | Las plantas necesitan agua, luz y tierra para crecer. Y la tierra tiene que estar limpia.
+ 35 | scr3-basura_2 | capsula-titulo | 🧹 Tierra sucia
+ 36 | scr3-basura_3 | capsula-texto | La tierra tiene basura. Tocá la basura para limpiar la tierra y que la planta esté bien.
+ 37 | scrFinal-play_2 | capsula-titulo | 🏆 ¡Ayudá a tu planta a crecer!
+ 38 | scrFinal-play_3 | capsula-texto | Para que tu planta crezca necesita agua, luz y tierra. Tocá cada necesidad y mirá cómo crece.
+ 39 | pregunta1 | pregunta | ¿Cuál va PRIMERO en el crecimiento?
+ 40 | pregunta1-opcion1 | opcion | 🌰 UNA SEMILLA
+ 41 | pregunta1-opcion2 | opcion | 🌸 UNA FLOR GRANDE
+ 42 | pregunta1-opcion3 | opcion | 🌳 UN ÁRBOL GIGANTE
+ 43 | pregunta1-error2 | error | La flor y el árbol aparecen AL FINAL, cuando la planta ya creció mucho.
+ 44 | pregunta1-error3 | error | El árbol es una planta muy grande, pero tampoco es lo primero.
+ 45 | pregunta1_2 | feedback | Primero es la SEMILLA. Con agua germina, después aparece el brote y al final la planta adulta.
+ 46 | pregunta2 | pregunta | La planta está triste. ¿QUÉ LE FALTA?
+ 47 | pregunta2-opcion1 | opcion | 💧 AGUA
+ 48 | pregunta2-opcion2 | opcion | 🍬 DULCE
+ 49 | pregunta2-opcion3 | opcion | 🧱 PIEDRAS
+ 50 | pregunta2-error2 | error | El dulce es comida, y las plantas no comen como nosotros: toman agua.
+ 51 | pregunta2-error3 | error | Las piedras no ayudan a una planta a crecer.
+ 52 | pregunta2_2 | feedback | LE FALTABA AGUA. Sin agua la planta no puede crecer y se pone triste.
+ 53 | pregunta3 | pregunta | Esta planta está en la oscuridad. ¿QUÉ LE FALTA?
+ 54 | pregunta3-opcion1 | opcion | ☀️ SOL
+ 55 | pregunta3-opcion2 | opcion | 🌙 LUNA
+ 56 | pregunta3-error2 | error | La luna no da luz para fabricar el alimento de la planta.
+ 57 | pregunta3-error3 | error | Las piedras no le dan luz.
+ 58 | pregunta3_2 | feedback | LE FALTA LUZ. Las plantas necesitan luz para crecer.
+ 59 | pregunta4 | pregunta | La tierra tiene basura. ¿QUÉ TIENE QUE HACERSE?
+ 60 | pregunta4-opcion1 | opcion | 🧹 LIMPIAR LA TIERRA
+ 61 | pregunta4-opcion2 | opcion | 🧱 TAPARLA MÁS
+ 62 | pregunta4-opcion3 | opcion | 🍞 ECHAR PAN
+ 63 | pregunta4-error2 | error | Taper la basura no ayuda: hay que quitarla para que la raíz esté libre.
+ 64 | pregunta4-error3 | error | El pan no limpia la tierra.
+ 65 | pregunta4_2 | feedback | HAY QUE LIMPIAR LA TIERRA. Sin basura, la raíz puede crecer bien.
+ 66 | transfer1 | item | 💧 REGARLA con agua
+ 67 | transfer1_2 | item-explicacion | Regá la planta con agua. Sin agua no puede crecer.
+ 68 | transfer2 | item | ☀️ PONERLA AL SOL
+ 69 | transfer2_2 | item-explicacion | Poné la planta al sol. La luz la ayuda a fabricar su alimento.
+ 70 | transfer3 | item | 🧹 DEJAR LA TIERRA LIMPIA
+ 71 | transfer3_2 | item-explicacion | Sacá la basura de la tierra para que la planta esté bien.
+ 72 | etapa1 | etapa | Semilla
+ 73 | etapa2 | etapa | Germinación
+ 74 | etapa3 | etapa | Brote
+ 75 | etapa4 | etapa | Planta pequeña
+ 76 | etapa5 | etapa | Planta adulta
+ 77 | semilla | crecimiento | 🌰 ¡Es una semilla!
+ 78 | germinacion | crecimiento | 💧 ¡Germinó! Nació la raíz
+ 79 | brote | crecimiento | 🌱 ¡Apareció un brote!
+ 80 | pequena | crecimiento | 🌿 ¡Crece con hojas!
+ 81 | adulta | crecimiento | 🌸 ¡Tu planta creció!
+ 82 | msg-bien | msg | ¡Bien!
+ 83 | msg-muybien | msg | ¡Muy bien!
+ 84 | msg-le-diste | msg | ¡Le diste AGUA!
+ 85 | msg-recibio-luz | msg | ¡Recibió LUZ!
+ 86 | msg-tierra-limpia | msg | ¡TIERRA LIMPIA!
+ 87 | msg-tu-planta | msg | ¡Tu planta va a crecer! Mirá sus etapas.
+ 88 | msg-adulta | msg | 🌸 ¡Tu planta adulta es una Guardiana del jardín!
+ 89 | msg-crecio | msg | 🌸 ¡Tu planta creció y está feliz! Ahora vamos a repasar.
+ 90 | msg-muybien2 | msg | ¡Muy bien! Una planta puede crecer.
+ 91 | msg-perfecto | msg | ¡Perfecto, Ana María! Ya sabés todo lo que necesita una planta.
+ 92 | msg-tres-cosas | msg | ¡Muy bien, Ana María! Si hacés estas tres cosas, tu planta va a crecer fuerte.
+ 93 | fin-orden | msg | ¡Muy bien! ¡Ordenaste cómo crece una planta!
+ 94 | fin-agua | msg | ⭐ LE DISTE AGUA Y AHORA ESTÁ FELIZ. SIN AGUA LA PLANTA TENÍA SED.
+ 95 | fin-sol | msg | ⭐ LE DISTE SOL Y VOLVIÓ A CRECER. EN LA OSCURIDAD NO PODÍA PREPARAR SU ALIMENTO.
+ 96 | fin-basura | msg | ⭐ LIMPIASTE LA TIERRA. SIN BASURA LA RAÍZ PUEDE CRECER.
+ 97 | orden-primero | orden | Primero tocá una imagen.
+ 98 | orden-ocupada | orden | Esa casilla ya tiene una imagen.
+ 99 | orden-mal | orden | Esa no va ahí. Busquemos la que va justo antes.
+100 | pick-no-planta | pick | Esta no es una planta. Busquemos la que tiene hojas y está en la tierra.
+101 | pick-perros | pick | Los perros y los niños estudian. Las plantas no. Probemos otra vez.
+102 | consigna-1 | consigna | Tocá AGUA.
+103 | consigna-luz | consigna | Tocá LUZ.
+104 | consigna-tierra | consigna | Tocá TIERRA.
+105 | rep-tierra-o1 | repaso | LIMPIAR LA TIERRA
+106 | rep-tierra-o2 | repaso | TAPARLA MÁS
+107 | rep-tierra-o3 | repaso | ECHAR PAN
+108 | error-DULCE | error | No, dulce. El dulce es comida, y las plantas no comen como nosotros: toman agua.
+109 | error-OSCURIDAD | error | No, oscuridad. Las plantas no crecen en la oscuridad. Necesitan la luz del sol.
+110 | error-HIELO | error | No, hielo. El hielo no ayuda a una planta a crecer.
+111 | error-PIEDRAS | error | No, piedras. Las piedras no ayudan a una planta a crecer.
+112 | error-PAN | error | No, pan. El pan es comida, y las plantas no comen como nosotros: toman agua.
+113 | orden-facil-1 | orden | ¡Bien! Semilla. Ahora falta: Germinación. Tocá esa imagen.
+114 | orden-facil-2 | orden | ¡Bien! Germinación. Ahora falta: Brote. Tocá esa imagen.
+115 | orden-facil-3 | orden | ¡Bien! Brote. Ahora falta: Planta pequeña. Tocá esa imagen.
+116 | orden-facil-4 | orden | ¡Bien! Planta pequeña. Ahora falta: Planta adulta. Tocá esa imagen.
+117 | orden-casilla-1 | orden | Semilla. Ahora tocá la casilla 1.
+118 | orden-casilla-2 | orden | Germinación. Ahora tocá la casilla 2.
+119 | orden-casilla-3 | orden | Brote. Ahora tocá la casilla 3.
+120 | orden-casilla-4 | orden | Planta pequeña. Ahora tocá la casilla 4.
+121 | orden-casilla-5 | orden | Planta adulta. Ahora tocá la casilla 5.
+122 | orden-bien-1 | orden | ¡Bien! Semilla.
+123 | orden-bien-2 | orden | ¡Bien! Germinación.
+124 | orden-bien-3 | orden | ¡Bien! Brote.
+125 | orden-bien-4 | orden | ¡Bien! Planta pequeña.
+126 | orden-bien-5 | orden | ¡Bien! Planta adulta.
+
+# TOTAL: 126

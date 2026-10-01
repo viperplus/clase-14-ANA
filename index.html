@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guardiana de las Plantas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== MARCADOR DE ESTRELLAS ===== -->
+<div class="hud" id="hud" aria-hidden="true"><span class="star">⭐ <b id="starCount">0</b></span></div>
+
+<!-- ===== PANTALLA DE INICIO ===== -->
+<section class="screen on" id="screen-start">
+  <div class="card center">
+    <div class="mascota"><img src="img/4.png" alt="Planta adulta"></div>
+    <h1 class="big">¡Hola, Ana María!</h1>
+    <p class="sub">Guardiana de las Plantas</p>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¡Hola, Ana María! Bienvenida al juego Guardiana de las Plantas. Tocá Comenzar para jugar.</span></div>
+    <div class="def-btns">
+      <button class="listen-btn" onclick="speak(INTROS['screen-start'].text,'',null)" aria-label="Escuchar bienvenida">🔊 ESCUCHAR</button>
+      <button class="btn big start-btn" onclick="arrancarJuego()">🌱 COMENZAR</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PANTALLAS CON BOTÓN QUE ESPERA EL AUDIO ===== -->
+<section class="screen" id="scr1-intro">
+  <div class="card center">
+    <h1 class="small">Conozcamos a las plantas</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Conozcamos a las plantas. Tocá Vamos a jugar para empezar.</span></div>
+    <div class="def-btns">
+      <button class="listen-btn" onclick="speak(INTROS['scr1-intro'].text,'',null)" aria-label="Escuchar consigna">🔊 ESCUCHAR</button>
+      <button class="btn big" id="btnScr1" onclick="goScreen('scr1-pick')">▶ VAMOS A JUGAR</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="scr2-intro">
+  <div class="card center">
+    <h1 class="small">¿Cómo crece una planta?</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¿Cómo crece una planta? Tocá Vamos a jugar para empezar.</span></div>
+    <div class="def-btns">
+      <button class="listen-btn" onclick="speak(INTROS['scr2-intro'].text,'',null)" aria-label="Escuchar consigna">🔊 ESCUCHAR</button>
+      <button class="btn big" id="btnScr2" onclick="goScreen('scr2-theory')">▶ VAMOS A JUGAR</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="scr3-intro">
+  <div class="card center">
+    <h1 class="small">¡Ahora vamos a cuidar nuestra planta!</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¡Ahora vamos a cuidar nuestra planta! Tocá Vamos a jugar.</span></div>
+    <div class="def-btns">
+      <button class="listen-btn" onclick="speak(INTROS['scr3-intro'].text,'',null)" aria-label="Escuchar consigna">🔊 ESCUCHAR</button>
+      <button class="btn big" id="btnScr3" onclick="goScreen('scr3-sed')">▶ VAMOS A JUGAR</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NIVEL 1 · ¿CUÁLES SON PLANTAS? ===== -->
+<section class="screen" id="scr1-pick">
+  <div class="card center">
+    <h1 class="small">¿Cuáles son plantas?</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Tocá las TRES plantas. Son las que están en la tierra y tienen hojas.</span></div>
+    <div class="choice-grid" id="pickGrid"></div>
+    <button class="btn" id="pickNext" style="display:none" onclick="goScr1Next()">▶ SEGUIR</button>
+  </div>
+</section>
+
+<!-- ===== NIVEL 1 · ¿QUÉ PUEDE HACER UNA PLANTA? ===== -->
+<section class="screen" id="scr1-acciones">
+  <div class="card center">
+    <h1 class="small">¿Qué puede hacer una planta?</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¿Qué puede hacer una planta? Tocá UNA sola respuesta.</span></div>
+    <div class="choice-grid-2" id="accionesGrid"></div>
+    <button class="btn" id="accionesNext" style="display:none" onclick="goScreen('scr2-intro')">▶ SEGUIR</button>
+  </div>
+</section>
+
+<!-- ===== NIVEL 2 · TEORÍA DE ETAPAS (INTERACTIVA) ===== -->
+<section class="screen" id="scr2-theory">
+  <div class="card center">
+    <h1 class="small">Las etapas de crecimiento de una planta</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Estas son las CINCO etapas. Tocá cada imagen para escuchar su nombre.</span></div>
+    <div class="growth-line" id="theoryLine"></div>
+    <button class="btn big" onclick="goScreen('scr2-order')">▶ VAMOS A JUGAR</button>
+  </div>
+</section>
+
+<!-- ===== NIVEL 2 · ORDENAR LAS ETAPAS ===== -->
+<section class="screen" id="scr2-order">
+  <div class="card center">
+    <h1 class="small">🗂️ Ordená cómo crece una planta</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¿Cuál va después? Tocá una imagen y después la casilla donde va.</span></div>
+    <div class="order-slots" id="orderSlots"></div>
+    <div class="order-option" id="orderOption"></div>
+    <div class="fb" id="orderFb"></div>
+  </div>
+</section>
+
+<!-- ===== NIVEL 2 · CRECER CON AGUA Y LUZ ===== -->
+<section class="screen" id="scr2-grow">
+  <div class="card center">
+    <h1 class="small">💧🌱 ¡Cuidá la semilla y crecerá!</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">La semilla necesita AGUA y LUZ. Tocá los dos botones, uno por vez.</span></div>
+    <div class="needs-bar" id="growNeeds">
+      <span class="need-item" id="growNeedAgua">💧 Agua</span>
+      <span class="need-item" id="growNeedLuz">☀️ Luz</span>
+    </div>
+    <div class="pot-scene">
+      <div class="pot-stage" id="potStage"><img src="img/1.png" alt=""></div>
+      <div class="pot-dirt" id="potDirt"></div>
+      <div class="pot-anim" id="potAnimWater">
+        <div class="water-drops"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="pot-anim" id="potAnimSun">
+        <div class="sun-rays"></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="action-btn" id="btnGrowAgua" onclick="giveNeed('agua')"><span class="ico">💧</span> AGUA</button>
+      <button class="action-btn" id="btnGrowLuz" onclick="giveNeed('sol')"><span class="ico">☀️</span> LUZ</button>
+    </div>
+    <div class="fb" id="growFeedback"></div>
+  </div>
+</section>
+
+<!-- ===== NIVEL 3 · SED (problema 1) ===== -->
+<section class="screen" id="scr3-sed">
+  <div class="card center">
+    <h1 class="small">Mi planta está triste</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Mirá la planta. Está triste. ¿QUÉ LE FALTA? Tocá una respuesta.</span></div>
+    <div class="scene-plant" id="sedPlant"><img src="img/15.png" alt=""></div>
+    <div class="choice-grid-3" id="sedOptions"></div>
+  </div>
+</section>
+
+<!-- ===== NIVEL 3 · RECUPERACIÓN AGUA ===== -->
+<section class="screen" id="scr3-falta">
+  <div class="card center">
+    <h1 class="small">🥀 ¡Le falta agua!</h1>
+    <div class="consigna" id="faltaBubble" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¡Le falta AGUA! Tocá el botón de AGUA para ayudarla.</span></div>
+    <div class="scene-plant" id="faltaPlant"><img src="img/15.png" alt=""></div>
+    <button class="action-btn" onclick="faltaRecover()"><span class="ico">💧</span> AGUA</button>
+  </div>
+</section>
+
+<!-- ===== NIVEL 3 · LUZ (problema 2) ===== -->
+<section class="screen" id="scr3-luz">
+  <div class="card center">
+    <h1 class="small">🌑 Una planta en la oscuridad</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Esta planta está en la oscuridad. ¿QUÉ LE FALTA? Tocá una respuesta.</span></div>
+    <div class="scene-plant" id="luzPlant"><img src="img/17.png" alt=""></div>
+    <div class="choice-grid-3" id="luzOptions"></div>
+  </div>
+</section>
+
+<!-- ===== NIVEL 3 · RECUPERACIÓN LUZ ===== -->
+<section class="screen" id="scr3-faltaluz">
+  <div class="card center">
+    <h1 class="small">🌑 ¡No tiene luz!</h1>
+    <div class="consigna" id="faltaluzBubble" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¡No tiene LUZ! Tocá el botón del SOL para ayudarla.</span></div>
+    <div class="scene-plant" id="faltaluzPlant"><img src="img/17.png" alt=""></div>
+    <button class="action-btn warm" onclick="faltaluzRecover()"><span class="ico">☀️</span> SOL</button>
+  </div>
+</section>
+
+<!-- ===== NIVEL 3 · TIERRA (problema 3) ===== -->
+<section class="screen" id="scr3-tierra">
+  <div class="card center">
+    <h1 class="small">🌱 La planta y su tierra</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Esta planta no tiene tierra buena. ¿QUÉ LE FALTA? Tocá una respuesta.</span></div>
+    <div class="scene-plant" id="tierraPlant"><img src="img/16.png" alt=""></div>
+    <div class="choice-grid-3" id="tierraOptions"></div>
+  </div>
+</section>
+
+<!-- ===== NIVEL 3 · TIERRA CON BASURA ===== -->
+<section class="screen" id="scr3-basura">
+  <div class="card center">
+    <h1 class="small">La tierra tiene basura</h1>
+    <div class="consigna" id="basuraBubble" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">La basura tapa la tierra. Tocá la escoba y mirá qué pasa.</span></div>
+    <div class="scene-plant" id="basuraPlant"><img src="img/15.png" alt=""></div>
+    <button class="action-btn soil" onclick="limpiarBasura()"><span class="ico">🧹</span> LIMPIAR</button>
+  </div>
+</section>
+
+<!-- ===== DESAFÍO FINAL ===== -->
+<section class="screen" id="scrFinal-intro">
+  <div class="card center">
+    <h1 class="small">🏆 ¡Ayudá a tu planta a crecer!</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¡Ayudá a tu planta a crecer! Tocá Vamos a jugar.</span></div>
+    <div class="def-btns">
+      <button class="listen-btn" onclick="speak(INTROS['scrFinal-intro'].text,'',null)" aria-label="Escuchar consigna">🔊 ESCUCHAR</button>
+      <button class="btn big" id="btnScrFinal" onclick="goScreen('scrFinal-play')">▶ VAMOS A JUGAR</button>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="scrFinal-play">
+  <div class="card center">
+    <h1 class="small">🌱 Ayudá a tu planta a crecer</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Tocá AGUA, después LUZ, después TIERRA. Después mirá cómo crece.</span></div>
+    <div class="needs-bar" id="finalNeeds">
+      <span class="need-item" id="finalNeedAgua">💧 Agua</span>
+      <span class="need-item" id="finalNeedLuz">☀️ Luz</span>
+      <span class="need-item" id="finalNeedTierra">🌱 Tierra</span>
+    </div>
+    <div class="pot-scene">
+      <div class="pot-stage" id="finalStage"><img src="img/1.png" alt=""></div>
+      <div class="pot-dirt" id="finalDirt"></div>
+      <div class="pot-anim" id="finalAnimWater">
+        <div class="water-drops"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="pot-anim" id="finalAnimSun">
+        <div class="sun-rays"></div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="action-btn" id="btnFinalAgua" onclick="finalNeed('agua')"><span class="ico">💧</span> AGUA</button>
+      <button class="action-btn" id="btnFinalLuz" onclick="finalNeed('sol')"><span class="ico">☀️</span> LUZ</button>
+      <button class="action-btn soil" id="btnFinalTierra" onclick="finalNeed('tierra')"><span class="ico">🌱</span> TIERRA</button>
+    </div>
+    <div class="fb" id="finalFeedback"></div>
+  </div>
+</section>
+
+<!-- ===== REPASO FINAL ===== -->
+<!-- ===== REPASO FINAL: TRES PREGUNTAS (EVALUACIÓN FORMATIVA) ===== -->
+<section class="screen" id="scrFinish-review">
+  <div class="card center">
+    <h1 class="small">🧠 Repasemos lo que aprendiste</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Contestá las cuatro preguntas. Si te equivocás, lo intentás otra vez.</span></div>
+    <div class="quiz-dots" id="quizDots" aria-label="Progreso del repaso"></div>
+    <h2 class="quiz-q" id="quizQ"></h2>
+    <div class="choice-grid choice-grid-3" id="quizOpts"></div>
+    <div class="fb" id="quizFb"></div>
+    <button class="btn big" id="btnReviewDone" onclick="goTransfer()" style="display:none">🌟 TERMINAR</button>
+  </div>
+</section>
+
+<!-- ===== TRANSFERENCIA A LA VIDA REAL ===== -->
+<section class="screen" id="scrTransfer">
+  <div class="card center">
+    <h1 class="small">🏡 Ahora cuidá una planta de verdad</h1>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">Tocá las TRES cosas que tenés que hacer para cuidar una planta en tu casa.</span></div>
+    <div class="check-list" id="transferList"></div>
+    <div class="fb" id="transferFb"></div>
+    <button class="btn big" id="btnTransfer" onclick="goFinish()" style="display:none">🌸 TERMINAR</button>
+  </div>
+</section>
+
+<!-- ===== PANTALLA FINAL ===== -->
+<section class="screen" id="screen-finish">
+  <div class="card center">
+    <div class="mascota"><img src="img/4.png" alt="Planta adulta"></div>
+    <p class="sub">Ya sos una Guardiana de las Plantas 🌸</p>
+    <div class="consigna" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt">¡Lo lograste, Ana María! 🌸 Cuidá tu planta con AGUA, SOL y TIERRA limpia, y va a crecer fuerte.</span></div>
+    <div class="confetti" aria-hidden="true">🎉 🌸 💚 🌿 ⭐</div>
+    <div class="def-btns">
+      <button class="listen-btn" id="btnScrFinal2" onclick="speak(INTROS['screen-finish'].text,'btnScrFinal2')">🔊 ESCUCHAR</button>
+      <button class="btn big" onclick="arrancarJuego()">🔁 JUGAR OTRA VEZ</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CÁPSULA DE TEORÍA ===== -->
+<div class="def-overlay" id="defWindow">
+  <div class="def-box">
+    <div class="def-img" id="defImg"></div>
+    <h2 id="defTitle"></h2>
+    <p class="consigna def-text" id="defText" onclick="speakConsigna(this)" role="button" tabindex="0"><span class="ico" aria-hidden="true">🔊</span><span class="txt"></span></p>
+    <div class="def-btns">
+      <button class="listen-btn" id="defListen" onclick="defEscuchar()">🔊 ESCUCHAR</button>
+      <button class="def-play" id="defPlay" onclick="defGo()">▶ VAMOS A JUGAR</button>
+    </div>
+  </div>
+</div>
+
+<script src="audio/mapa-audio.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
